@@ -163,7 +163,7 @@ namespace iNKORE.UI.WPF.Modern.Controls.Helpers
 
         private static void RunExpanderAnimation(Expander expander)
         {
-s            if (!Helper.IsAnimationsEnabled)
+            if (!Helper.IsAnimationsEnabled)
             {
                 InitializeExpanderState(expander);
                 return;
