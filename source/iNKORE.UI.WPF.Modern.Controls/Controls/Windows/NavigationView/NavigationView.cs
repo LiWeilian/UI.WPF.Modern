@@ -2357,9 +2357,13 @@ namespace iNKORE.UI.WPF.Modern.Controls
                 KeyFrames =
                 {
                     new DiscreteDoubleKeyFrame(from < to ? 0.0 : dimension, KeyTime.FromPercent(0.0)),
-                    new DiscreteDoubleKeyFrame(from < to ? dimension : 0.0, KeyTime.FromPercent(1.0)),
+                    // CenterY must reach the far edge before scaleAnim shrinks; otherwise the bar
+                    // scales around its start edge and overshoots. Keep the flip inside the active
+                    // window (0.333) and the clip as long as the settle (600ms) so CenterY stays
+                    // pinned throughout, instead of being held only by FillBehavior after the clip.
+                    new DiscreteDoubleKeyFrame(from < to ? dimension : 0.0, KeyTime.FromPercent(0.333)),
                 },
-                Duration = TimeSpan.FromMilliseconds(200)
+                Duration = TimeSpan.FromMilliseconds(600)
             };
             Storyboard.SetTarget(centerAnim, indicator);
             animations.Add(centerAnim);
