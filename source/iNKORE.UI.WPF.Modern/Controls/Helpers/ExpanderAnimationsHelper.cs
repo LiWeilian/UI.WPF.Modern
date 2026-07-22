@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using iNKORE.UI.WPF.Modern.Helpers;
 
 namespace iNKORE.UI.WPF.Modern.Controls.Helpers
 {
@@ -128,7 +129,6 @@ namespace iNKORE.UI.WPF.Modern.Controls.Helpers
         /// to Collapsed. For expanded expanders, it ensures visibility is Visible and resets
         /// any transforms to identity without animation.
         /// </remarks>
-        /// <seealso href="https://github.com/iNKORE-NET/UI.WPF.Modern/issues/402"/>
         private static void InitializeExpanderState(Expander expander)
         {
             // On initial load, set the content to the appropriate state immediately
@@ -163,6 +163,12 @@ namespace iNKORE.UI.WPF.Modern.Controls.Helpers
 
         private static void RunExpanderAnimation(Expander expander)
         {
+            if (!Helper.IsAnimationsEnabled)
+            {
+                InitializeExpanderState(expander);
+                return;
+            }
+
             if (expander.IsExpanded)
             {
                 AnimateExpand(expander);
