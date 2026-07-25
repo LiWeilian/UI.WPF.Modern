@@ -61,7 +61,6 @@ namespace iNKORE.UI.WPF.Modern.Gallery.Pages.Controls.Windows
         public string Example2Xaml => $@"
 <ui:HyperlinkButton x:Name=""Control2""
     Click=""GoToHyperlinkButton_Click""
-    RaiseHyperlinkClicks=""False""
     Content=""Go to ToggleButton"" />
 ";
 
